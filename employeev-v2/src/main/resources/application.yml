@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: employee-service
+    address-base-url: http://localhost:8081/address-app/api/v1
+  datasource:
+    url: jdbc:mysql://localhost:3306/mc-1
+    username: root
+    password: 090224T@n
+#  webflux:
+#    base-path: /employee-app/api/v1
+server:
+  port: 8080
+  servlet:
+    context-path: /employee-app/api/v1
+address-service:
+  ribbon:
+    listOfServers: http://localhost:8081,http://localhost:8082
+
