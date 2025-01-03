@@ -31,6 +31,10 @@ target/**
 *.iml
 *ipr
 *.iws
+.gitattributes
+mvnw
+mvnw.cmd
+
 
 ### IntelliJ IDEA
 .idea
