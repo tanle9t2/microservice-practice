@@ -10,3 +10,8 @@ spring:
 server:
   port: 8081
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka/ #configure it when change eureka sever port
+    #  z1: http://localhost:5000/eureka/ # it can have many zone

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: discovery-service
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false #this means eureka doesn't register and maintain itself
+
+server:
+  port: 5000
