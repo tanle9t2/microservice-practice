@@ -14,13 +14,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Employee {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
     private String name;
     @Column(name = "email")
     private String email;
-    @Column(name = "blob")
+    @Column(name = "blobd")
     private String blob;
 }

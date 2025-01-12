@@ -12,4 +12,5 @@ public class AddressReponse {
     private String city;
     private String country;
     private String detail;
+    private int employeeId;
 }

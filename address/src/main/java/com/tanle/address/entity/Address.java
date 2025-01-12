@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Address {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "city")
     private String city;
@@ -22,5 +22,6 @@ public class Address {
     private String country;
     @Column(name = "detail")
     private String detail;
-
+    @Column(name = "employee_id")
+    private int employeeId;
 }

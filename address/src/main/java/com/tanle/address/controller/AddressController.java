@@ -4,9 +4,7 @@ import com.tanle.address.respone.AddressReponse;
 import com.tanle.address.service.AddressSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,17 @@ public class AddressController {
     public ResponseEntity<List<AddressReponse>> getAddress(@PathVariable int id) {
         List<AddressReponse> addressReponse = addressSerivce.findByEmployeeId(id);
         return ResponseEntity.ok(addressReponse);
+    }
+
+    @GetMapping("/address")
+    public ResponseEntity<List<AddressReponse>> getAllAddress() {
+        List<AddressReponse> addressReponse = addressSerivce.findAll();
+        return ResponseEntity.ok(addressReponse);
+    }
+
+    @PostMapping("/address")
+    public ResponseEntity createAddress(@RequestBody List<AddressReponse> addressRequest) {
+       addressSerivce.createAddress(addressRequest);
+        return ResponseEntity.ok("SUCCESS");
     }
 }

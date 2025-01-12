@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,4 +26,16 @@ public class AddressSerivce {
                 .collect(Collectors.toList());
         return addressReponses;
     }
+
+    public List<AddressReponse> findAll() {
+        List<Address> address = addresRepo.findAll();
+        List<AddressReponse> addressReponses = address.stream()
+                .map(a -> modelMapper.map(a, AddressReponse.class))
+                .collect(Collectors.toList());
+        return addressReponses;
+    }
+        public void createAddress(List<AddressReponse> addressRequest) {
+            List<Address> addresses = List.of(modelMapper.map(addressRequest, Address[].class));
+            addresRepo.saveAll(addresses);
+        }
 }

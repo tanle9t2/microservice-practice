@@ -1,4 +1,9 @@
 spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
   application:
     name: employee
     address-base-url: http://localhost:8081/address-app/api/v1
@@ -6,8 +11,16 @@ spring:
     url: jdbc:mysql://localhost:3306/mc-1
     username: root
     password: 090224T@n
-  webflux:
-    base-path: /employee-app/api/v1
+#  webflux:
+#    base-path: /employee-app/api/v1 OpenFeign doesn't natively support reactive programming with WebFlux
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka/
 server:
   port: 8080
+  servlet:
+    context-path: /employee-app/api/v1
+
 

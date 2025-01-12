@@ -6,9 +6,7 @@ import com.tanle.employee.respone.EmployeeRespone;
 import com.tanle.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -21,8 +19,20 @@ public class EmployeeController {
 
 
     @GetMapping("/employee/{id}")
-    public ResponseEntity<Mono<EmployeeRespone>> getEmployee(@PathVariable int id) {
-        Mono<EmployeeRespone> employeeRespone = employeeService.findById(id);
+    public ResponseEntity<EmployeeRespone> getEmployee(@PathVariable int id) {
+        EmployeeRespone employeeRespone = employeeService.findById(id);
         return ResponseEntity.ok(employeeRespone);
+    }
+
+    @GetMapping("/employee")
+    public ResponseEntity<List<EmployeeRespone>> getAllEmployee() {
+        List<EmployeeRespone> employeeResponeList = employeeService.findAll();
+        return ResponseEntity.ok(employeeResponeList);
+    }
+
+    @PostMapping("/employee")
+    public ResponseEntity createEmployee(@RequestBody EmployeeRespone employeeRequest) {
+        employeeService.createEmployee(employeeRequest);
+        return ResponseEntity.ok("Success");
     }
 }
