@@ -6,6 +6,8 @@ eureka:
   client:
     fetch-registry: false
     register-with-eureka: false #this means eureka doesn't register and maintain itself
+    service-url:
+      defaultZone: "http://localhost:5000/eureka/"
 
 server:
   port: 5000

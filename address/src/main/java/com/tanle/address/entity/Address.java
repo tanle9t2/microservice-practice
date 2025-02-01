@@ -24,4 +24,6 @@ public class Address {
     private String detail;
     @Column(name = "employee_id")
     private int employeeId;
+
+
 }

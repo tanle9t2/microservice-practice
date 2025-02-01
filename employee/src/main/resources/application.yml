@@ -5,7 +5,7 @@ spring:
       hibernate:
         format_sql: true
   application:
-    name: employee
+    name: employee-service
     address-base-url: http://localhost:8081/address-app/api/v1
   datasource:
     url: jdbc:mysql://localhost:3306/mc-1
@@ -22,5 +22,35 @@ server:
   port: 8080
   servlet:
     context-path: /employee-app/api/v1
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+feign:
+  circuitbreaker:
+    enabled: true
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      employeeService:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 30s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
 
 
